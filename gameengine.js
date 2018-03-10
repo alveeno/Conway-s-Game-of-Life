@@ -1,18 +1,5 @@
 var socket = io.connect("http://24.16.255.56:8888");
 
-socket.on("load", function (data) {
-    console.log("attemtping to load");
-    console.log(data);
-});
-
-socket.emit("save", { studentname: "Alvin Nguyen", statename: "aState", data: "Goodbye World" });
-socket.emit("load", { studentname: "Alvin Nguyen", statename: "aState" });
-
-
-
-
-
-
 window.requestAnimFrame = (function () {
     return window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
@@ -65,11 +52,19 @@ function GameEngine() {
 
 function saveGame() {
     console.log("save");
+    var list = [this.timex, this.generation, this.livecells, this.entities, this.grid];
+    socket.emit("save", { studentname: "Alvin Nguyen", statename: "aState", data: list });
 }
 
 function loadGame() {
     console.log("load");
+
+    socket.emit("load", { studentname: "Alvin Nguyen", statename: "aState" });
 }
+
+socket.on("load", function (data) {
+    this.timex = data.list[0];
+});
 
 GameEngine.prototype.init = function (ctx) {
     this.ctx = ctx;
