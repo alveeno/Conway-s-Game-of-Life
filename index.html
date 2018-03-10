@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<style>
+#outPopUp {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+  background: black;
+  transform: scale(3);
+}
+</style>
+<head>
+    <meta charset="utf-8">
+    <title>Conway's Game of Life - Exploder</title>
+    <script type="text/javascript" src="http://24.16.255.56:8888/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="./gameengine.js"></script>
+    <script type="text/javascript" src="./assetmanager.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
+</head>
+<body>
+	<div id="outPopUp">
+    <canvas id="gameWorld" tabindex="1" width="260" height="260" style="border: 1px solid brown; background: white"></canvas>
+    <button onclick="saveGame()">Save</button><button onclick="loadGame()">Load</button>
+	</div>
+</body>
+</html>
